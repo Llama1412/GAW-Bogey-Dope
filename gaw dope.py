@@ -3,6 +3,7 @@ import json
 import time
 import math
 import os
+import geopy.distance
 target = "Terminus"  #Enter Name Here
 def calculate_initial_compass_bearing(pointA, pointB):
     lat1 = math.radians(pointA[0])
@@ -44,7 +45,9 @@ while True:
                     Lon = data["objects"][i]["LatLongAlt"]["Long"]
                     Alt = data["objects"][i]["LatLongAlt"]["Alt"]
                     if Type != False:
-                        Distance = math.sqrt(((MyLat+Lat))*(MyLat+Lat)+((MyLon+Lon)*(MyLon+Lon)))
+                        MyPos = (MyLat, MyLon)
+                        TPos = (Lat, Lon)
+                        Distance = geopy.distance.distance(MyPos,TPos).nm
                         A = (MyLat, MyLon)
                         B = (Lat, Lon)
                         Bearing = calculate_initial_compass_bearing(A, B)
