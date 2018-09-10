@@ -26,8 +26,12 @@ while True:
                     MyLat = data["objects"][i]["LatLongAlt"]["Lat"]
                     MyLon = data["objects"][i]["LatLongAlt"]["Long"]
                     MyAlt = data["objects"][i]["LatLongAlt"]["Alt"]
+
         os.system('cls' if os.name=='nt' else 'clear')
         count = 0
+        print("---------------------------")
+        print("Bogey dope for "+target+".")
+        print("---------------------------\n")
         for i in range(len(data["objects"])):
             if data["objects"][i]["Flags"]["Human"] == False:
                 if data["objects"][i]["Coalition"] == "Allies" and data["objects"][i]["Flags"]["Born"] == True:
