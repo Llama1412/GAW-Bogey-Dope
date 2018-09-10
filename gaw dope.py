@@ -30,7 +30,7 @@ while True:
         count = 0
         for i in range(len(data["objects"])):
             if data["objects"][i]["Flags"]["Human"] == False:
-                if data["objects"][i]["Coalition"] == "Allies":
+                if data["objects"][i]["Coalition"] == "Allies" and data["objects"][i]["Flags"]["Born"] == True:
                     Type = False
                     if data["objects"][i]["Name"] == "Su-27":
                         Type = "Su-27"
@@ -54,7 +54,7 @@ while True:
                         print("Target Type:\t"+Type)
                         print("Distance:\t"+str(round(Distance,1))+" Miles")
                         print("Bearing:\t"+str(round(Bearing,0)))
-                        print("Altitude:\tAngels: "+str(round(Alt/1000,1)))
+                        print("Altitude:\tAngels "+str(round(Alt/1000,1)))
                         print("\r")
                         count = count + 1
     print("Target Count:\t"+str(count))
