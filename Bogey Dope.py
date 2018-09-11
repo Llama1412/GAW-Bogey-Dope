@@ -13,8 +13,8 @@ class Bogey:
 			self.Altitude = Altitude
 			self.Threat = Threat
 try:
-	#target = input("Enter user:\t")  #Enter Name Here
-	target = "Skillhouse246"
+	target = input("Enter user:\t")  #Enter Name Here
+	#target = "Skillhouse246"
 	def calculate_initial_compass_bearing(pointA, pointB):
 	    lat1 = math.radians(pointA[0])
 	    lat2 = math.radians(pointB[0])
@@ -49,7 +49,7 @@ try:
 							Threat = False
 							if data["objects"][i]["Name"] == "Su-27":
 								Type = "Su-27"
-								Type = "red"
+								Threat = "red"
 							elif data["objects"][i]["Name"] == "F-5E-3":
 								Type = "F5"
 								Threat = "yellow"
