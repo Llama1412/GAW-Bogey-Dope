@@ -13,7 +13,7 @@ class Bogey:
 			self.Altitude = Altitude
 			self.Threat = Threat
 try:
-	target = "[RED VIPER]"  #Enter Name Here
+	target = "Frederico174"  #Enter Name Here
 	def calculate_initial_compass_bearing(pointA, pointB):
 	    lat1 = math.radians(pointA[0])
 	    lat2 = math.radians(pointB[0])
@@ -48,7 +48,6 @@ try:
 							Threat = False
 							if data["objects"][i]["Name"] == "Su-27":
 								Type = "Su-27"
-
 							elif data["objects"][i]["Name"] == "F-5E-3":
 								Type = "F5"
 								Threat = "yellow"
@@ -78,7 +77,7 @@ try:
 							Lat = data["objects"][i]["LatLongAlt"]["Lat"]
 							Lon = data["objects"][i]["LatLongAlt"]["Long"]
 							Alt = data["objects"][i]["LatLongAlt"]["Alt"]
-							if Type != False:
+							if Type != False and Threat != False:
 								MyPos = (MyLat, MyLon)
 								TPos = (Lat, Lon)
 								Distance = geopy.distance.distance(MyPos,TPos).nm
@@ -97,5 +96,13 @@ try:
 				print("\r")
 			print("Target Count:\t"+str(count))
 			time.sleep(10)
-except:
-	print("Something went wrong. The target is probably not in the server.")
+except Exception as e:
+	print("Something went wrong. "+target+" is probably not in the server.")
+	print("Here is a list of people currently in the server:\n")
+	for i in range(len(data["objects"])):
+		if data["objects"][i]["Flags"]["Human"] == True:
+			print(data["objects"][i]["UnitName"])
+	print("\r")
+	print(e)
+	os.system('pause')
+	
