@@ -39,9 +39,9 @@ try:
 				os.system('cls' if os.name=='nt' else 'clear')
 				unsorted_bogeys = []
 				count = 0
-				print("---------------------------")
-				print("Bogey dope for "+target+".")
-				print("---------------------------\n")
+				print(colored("---------------------------","cyan"))
+				print(colored("Bogey dope for "+target+".","cyan"))
+				print(colored("---------------------------\n","cyan"))
 				for i in range(len(data["objects"])):
 					if data["objects"][i]["Flags"]["Human"] == False:
 						if data["objects"][i]["Coalition"] == "Allies" and data["objects"][i]["Flags"]["Born"] == True:
