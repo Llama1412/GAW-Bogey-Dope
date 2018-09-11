@@ -13,7 +13,7 @@ class Bogey:
 			self.Altitude = Altitude
 			self.Threat = Threat
 try:
-	target = "jeff"  #Enter Name Here
+	target = "[RED VIPER]"  #Enter Name Here
 	def calculate_initial_compass_bearing(pointA, pointB):
 	    lat1 = math.radians(pointA[0])
 	    lat2 = math.radians(pointB[0])
@@ -98,10 +98,4 @@ try:
 			print("Target Count:\t"+str(count))
 			time.sleep(10)
 except:
-	print("Something went wrong. "+target+" is probably not in the server.")
-	print("Here is a list of people currently in the server:\n")
-	for i in range(len(data["objects"])):
-		if data["objects"][i]["Flags"]["Human"] == True:
-			print(data["objects"][i]["UnitName"])
-	print("\r")
-	os.system('pause')
+	print("Something went wrong. The target is probably not in the server.")
