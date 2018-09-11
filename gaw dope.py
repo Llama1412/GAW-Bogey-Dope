@@ -4,7 +4,7 @@ import time
 import math
 import os
 import geopy.distance
-target = "Nemosupremo"  #Enter Name Here
+target = "Nemo"  #Enter Name Here
 def calculate_initial_compass_bearing(pointA, pointB):
     lat1 = math.radians(pointA[0])
     lat2 = math.radians(pointB[0])
@@ -44,7 +44,12 @@ try:
 							Type = "Su-25T"
 						elif data["objects"][i]["Name"] == "Mi-26":
 							Type = "Mi-26"
-
+						elif data["objects"][i]["Name"] == "J-11A":
+							Type = "J-11A"
+						elif data["objects"][i]["Name"] == "A-50":
+							Type = "A-50"
+						    
+							
 						Lat = data["objects"][i]["LatLongAlt"]["Lat"]
 						Lon = data["objects"][i]["LatLongAlt"]["Long"]
 						Alt = data["objects"][i]["LatLongAlt"]["Alt"]
