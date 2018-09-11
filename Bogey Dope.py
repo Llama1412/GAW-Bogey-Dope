@@ -48,6 +48,7 @@ try:
 							Threat = False
 							if data["objects"][i]["Name"] == "Su-27":
 								Type = "Su-27"
+								Threat = "red"
 							elif data["objects"][i]["Name"] == "F-5E-3":
 								Type = "F5"
 								Threat = "yellow"
@@ -105,4 +106,3 @@ except Exception as e:
 	print("\r")
 	print(e)
 	os.system('pause')
-	
