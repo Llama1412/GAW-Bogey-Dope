@@ -85,7 +85,7 @@ try:
 								A = (MyLat, MyLon)
 								B = (Lat, Lon)
 								Bearing = calculate_initial_compass_bearing(A, B)
-								b = Bogey(Type, Bearing, Distance, round(Alt/1000,1), Threat)
+								b = Bogey(Type, Bearing, Distance, Alt, Threat)
 								unsorted_bogeys.append(b)
 								sorted_bogeys = sorted(unsorted_bogeys, key=lambda x: x.Range)
 								count = count + 1
