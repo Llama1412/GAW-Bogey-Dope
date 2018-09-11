@@ -13,7 +13,8 @@ class Bogey:
 			self.Altitude = Altitude
 			self.Threat = Threat
 try:
-	target = "Frederico174"  #Enter Name Here
+	#target = input("Enter user:\t")  #Enter Name Here
+	target = "Skillhouse246"
 	def calculate_initial_compass_bearing(pointA, pointB):
 	    lat1 = math.radians(pointA[0])
 	    lat2 = math.radians(pointB[0])
@@ -48,7 +49,7 @@ try:
 							Threat = False
 							if data["objects"][i]["Name"] == "Su-27":
 								Type = "Su-27"
-								Threat = "red"
+								Type = "red"
 							elif data["objects"][i]["Name"] == "F-5E-3":
 								Type = "F5"
 								Threat = "yellow"
@@ -74,7 +75,6 @@ try:
 								Type = "MiG-31"
 								Threat = "red"
 
-
 							Lat = data["objects"][i]["LatLongAlt"]["Lat"]
 							Lon = data["objects"][i]["LatLongAlt"]["Long"]
 							Alt = data["objects"][i]["LatLongAlt"]["Alt"]
@@ -85,16 +85,17 @@ try:
 								A = (MyLat, MyLon)
 								B = (Lat, Lon)
 								Bearing = calculate_initial_compass_bearing(A, B)
-								b = Bogey(Type, Bearing, Distance, Alt, Threat)
+								b = Bogey(Type, Bearing, Distance, round(Alt/1000,1), Threat)
 								unsorted_bogeys.append(b)
 								sorted_bogeys = sorted(unsorted_bogeys, key=lambda x: x.Range)
 								count = count + 1
-			for i in sorted_bogeys:
-				print(colored("Target Type:\t"+i.Type,i.Threat))
-				print(colored("Distance:\t"+str(round(i.Range,1))+" Miles",i.Threat))
-				print(colored("Bearing:\t"+str(round(i.Bearing,0)),i.Threat))
-				print(colored("Altitude:\tAngels "+str(round(i.Altitude/1000,1)),i.Threat))
-				print("\r")
+			if len(sorted_bogeys) != 0:
+				for i in sorted_bogeys:
+					print(colored("Target Type:\t"+i.Type,i.Threat))
+					print(colored("Distance:\t"+str(round(i.Range,1))+" Miles",i.Threat))
+					print(colored("Bearing:\t"+str(round(i.Bearing,0)),i.Threat))
+					print(colored("Altitude:\tAngels "+str(round(i.Altitude/1000,1)),i.Threat))
+					print("\r")
 			print("Target Count:\t"+str(count))
 			time.sleep(10)
 except Exception as e:
@@ -104,5 +105,5 @@ except Exception as e:
 		if data["objects"][i]["Flags"]["Human"] == True:
 			print(data["objects"][i]["UnitName"])
 	print("\r")
-	print(e)
+	print("The reported error was "+str(e))
 	os.system('pause')
