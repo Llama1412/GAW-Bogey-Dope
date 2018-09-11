@@ -4,7 +4,7 @@ import time
 import math
 import os
 import geopy.distance
-target = "Nemo"  #Enter Name Here
+target = "[RED VIPER]"  #Enter Name Here
 def calculate_initial_compass_bearing(pointA, pointB):
     lat1 = math.radians(pointA[0])
     lat2 = math.radians(pointB[0])
