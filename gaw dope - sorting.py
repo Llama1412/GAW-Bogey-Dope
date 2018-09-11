@@ -4,13 +4,14 @@ import time
 import math
 import os
 import geopy.distance
+from termcolor import colored
 class Bogey:
-    def __init__(self, Type, Bearing, Range, Altitude, Threat):
-        self.Type = Type
-        self.Bearing = Bearing
-        self.Range = Range
-        self.Altitude = Altitude
-		self.Threat = Threat
+	def __init__(self, Type, Bearing, Range, Altitude, Threat):
+			self.Type = Type
+			self.Bearing = Bearing
+			self.Range = Range
+			self.Altitude = Altitude
+			self.Threat = Threat
 try:
 	target = "[RED VIPER]"  #Enter Name Here
 	def calculate_initial_compass_bearing(pointA, pointB):
@@ -44,18 +45,34 @@ try:
 					if data["objects"][i]["Flags"]["Human"] == False:
 						if data["objects"][i]["Coalition"] == "Allies" and data["objects"][i]["Flags"]["Born"] == True:
 							Type = False
+							Threat = False
 							if data["objects"][i]["Name"] == "Su-27":
 								Type = "Su-27"
+
 							elif data["objects"][i]["Name"] == "F-5E-3":
 								Type = "F5"
+								Threat = "yellow"
 							elif data["objects"][i]["Name"] == "Su-25T":
 								Type = "Su-25T"
+								Threat = "yellow"
 							elif data["objects"][i]["Name"] == "Mi-26":
 								Type = "Mi-26"
+								Threat = "green"
 							elif data["objects"][i]["Name"] == "J-11A":
 								Type = "J-11A"
+								Threat = "red"
 							elif data["objects"][i]["Name"] == "A-50":
 								Type = "A-50"
+								Threat = "blue"
+							elif data["objects"][i]["Name"] == "MiG-21Bis":
+								Type = "MiG-21Bis"
+								Threat = "red"
+							elif data["objects"][i]["Name"] == "MiG-29S":
+								Type = "MiG-29S"
+								Threat = "red"
+							elif data["objects"][i]["Name"] == "MiG-31":
+								Type = "MiG-31"
+								Threat = "red"
 
 
 							Lat = data["objects"][i]["LatLongAlt"]["Lat"]
@@ -68,15 +85,15 @@ try:
 								A = (MyLat, MyLon)
 								B = (Lat, Lon)
 								Bearing = calculate_initial_compass_bearing(A, B)
-								b = Bogey(Type, Bearing, Distance, round(Alt/1000,1))
+								b = Bogey(Type, Bearing, Distance, round(Alt/1000,1), Threat)
 								unsorted_bogeys.append(b)
 								sorted_bogeys = sorted(unsorted_bogeys, key=lambda x: x.Range)
 								count = count + 1
 			for i in sorted_bogeys:
-				print("Target Type:\t"+i.Type)
-				print("Distance:\t"+str(round(i.Range,1))+" Miles")
-				print("Bearing:\t"+str(round(i.Bearing,0)))
-				print("Altitude:\tAngels "+str(round(i.Altitude/1000,1)))
+				print(colored("Target Type:\t"+i.Type,i.Threat))
+				print(colored("Distance:\t"+str(round(i.Range,1))+" Miles",i.Threat))
+				print(colored("Bearing:\t"+str(round(i.Bearing,0)),i.Threat))
+				print(colored("Altitude:\tAngels "+str(round(i.Altitude/1000,1)),i.Threat))
 				print("\r")
 			print("Target Count:\t"+str(count))
 			time.sleep(10)
