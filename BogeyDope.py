@@ -27,7 +27,7 @@ try:
 	    compass_bearing = (initial_bearing + 360) % 360
 	    return compass_bearing
 	while True:
-			with urllib.request.urlopen("http://dcs.hoggitworld.com/") as url:
+			with urllib.request.urlopen("http://state.hoggitworld.com/") as url:
 				data = json.loads(url.read().decode())
 				for i in range(len(data["objects"])):
 					if data["objects"][i]["Flags"]["Human"] == True:
@@ -87,16 +87,15 @@ try:
 								Bearing = calculate_initial_compass_bearing(A, B)
 								b = Bogey(Type, Bearing, Distance, round(Alt/1000,1), Threat)
 								unsorted_bogeys.append(b)
-								sorted_bogeys = sorted(unsorted_bogeys, key=lambda x: x.Range)
-								count = count + 1
-			if len(sorted_bogeys) != 0:
-				for i in sorted_bogeys:
-					print(colored("Target Type:\t"+i.Type,i.Threat))
-					print(colored("Distance:\t"+str(round(i.Range,1))+" Miles",i.Threat))
-					print(colored("Bearing:\t"+str(round(i.Bearing,0)),i.Threat))
-					print(colored("Altitude:\tAngels "+str(round(i.Altitude/1000,1)),i.Threat))
+
+			sorted_bogeys = sorted(unsorted_bogeys, key=lambda x: x.Range)
+			for bogey in sorted_bogeys:
+					print(colored("Target Type:\t"+bogey.Type,bogey.Threat))
+					print(colored("Distance:\t"+str(round(bogey.Range,1))+" Miles",bogey.Threat))
+					print(colored("Bearing:\t"+str(round(bogey.Bearing,0)),bogey.Threat))
+					print(colored("Altitude:\tAngels "+str(round(bogey.Altitude/1000,1)),bogey.Threat))
 					print("\r")
-			print("Target Count:\t"+str(count))
+			print("Target Count:\t"+str(len(sorted_bogeys)))
 			time.sleep(10)
 except Exception as e:
 	print("Something went wrong. "+target+" is probably not in the server.")
