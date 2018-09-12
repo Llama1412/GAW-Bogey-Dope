@@ -52,7 +52,7 @@ try:
 								Threat = "red"
 							elif data["objects"][i]["Name"] == "F-5E-3":
 								Type = "F5"
-								Threat = "yellow"
+								Threat = "red"
 							elif data["objects"][i]["Name"] == "Su-25T":
 								Type = "Su-25T"
 								Threat = "yellow"
@@ -105,5 +105,4 @@ except Exception as e:
 		if data["objects"][i]["Flags"]["Human"] == True:
 			print(data["objects"][i]["UnitName"])
 	print("\r")
-	print("The reported error was "+str(e))
 	os.system('pause')
