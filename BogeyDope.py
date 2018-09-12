@@ -58,7 +58,7 @@ def calculate_initial_compass_bearing(pointA, pointB):
 		A = (MyLat, MyLon)
 		B = (Lat, Lon)
 		Bearing = calculate_initial_compass_bearing(A, B)
-		return Bogey(Type, Bearing, Distance, round(Alt/1000,1), Threat)
+		return Bogey(Type, Bearing, Distance, Alt, Threat)
 
 		def print_bogeydope(player_name, bogeys):
 			print(colored("---------------------------","cyan"))
@@ -143,8 +143,6 @@ while True:
 				x.align["Name"] = "l"
 				x.align["Aircraft"] = "l"
 				print(x)
-
-
 			print("\r")
 			print("Player count:\t"+str(count))
 			os.system('pause')
