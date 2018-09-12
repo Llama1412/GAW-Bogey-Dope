@@ -70,7 +70,6 @@ def print_bogeydope(player_name, bogeys):
 		print(colored("Bearing:\t"+str(round(bogey.Bearing,0)),bogey.Threat))
 		print(colored("Altitude:\tAngels "+str(round(bogey.Altitude/1000,1)),bogey.Threat))
 		print("\r")
-		print("Target Count:\t"+str(len(bogeys)))
 while True:
 	os.system('cls' if os.name=='nt' else 'clear')
 	print("Welcome to the GAW GCI Tool.")
@@ -111,6 +110,7 @@ while True:
 
 					sorted_bogeys = sorted(unsorted_bogeys, key=lambda x: x.Range)
 					print_bogeydope(target, sorted_bogeys)
+					print("Target Count:\t"+str(len(bogeys)))
 					time.sleep(10)
 		except Exception as e:
 			print("Something went wrong. "+target+" is probably not in the server.")
