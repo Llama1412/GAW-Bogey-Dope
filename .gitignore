@@ -19,3 +19,4 @@ dist/
 var/
 build.bat
 icon.ico
+__pycache__
