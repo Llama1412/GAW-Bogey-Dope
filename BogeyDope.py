@@ -110,7 +110,7 @@ while True:
 
 					sorted_bogeys = sorted(unsorted_bogeys, key=lambda x: x.Range)
 					print_bogeydope(target, sorted_bogeys)
-					print("Target Count:\t"+str(len(bogeys)))
+					print("Target Count:\t"+str(len(sorted_bogeys)))
 					time.sleep(10)
 		except Exception as e:
 			print("Something went wrong. "+target+" is probably not in the server.")
