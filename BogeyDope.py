@@ -49,28 +49,28 @@ def calculate_initial_compass_bearing(pointA, pointB):
 	compass_bearing = (initial_bearing + 360) % 360
 	return compass_bearing
 
-	def make_bogey(target, MyPos):
-		Lat = target["LatLongAlt"]["Lat"]
-		Lon = target["LatLongAlt"]["Long"]
-		Alt = target["LatLongAlt"]["Alt"]
-		TPos = (Lat, Lon)
-		Distance = geopy.distance.distance(MyPos,TPos).nm
-		A = (MyLat, MyLon)
-		B = (Lat, Lon)
-		Bearing = calculate_initial_compass_bearing(A, B)
-		return Bogey(Type, Bearing, Distance, Alt, Threat)
+def make_bogey(target, MyPos):
+	Lat = target["LatLongAlt"]["Lat"]
+	Lon = target["LatLongAlt"]["Long"]
+	Alt = target["LatLongAlt"]["Alt"]
+	TPos = (Lat, Lon)
+	Distance = geopy.distance.distance(MyPos,TPos).nm
+	A = (MyLat, MyLon)
+	B = (Lat, Lon)
+	Bearing = calculate_initial_compass_bearing(A, B)
+	return Bogey(Type, Bearing, Distance, Alt, Threat)
 
-		def print_bogeydope(player_name, bogeys):
-			print(colored("---------------------------","cyan"))
-			print(colored("Bogey dope for "+player_name+".","cyan"))
-			print(colored("---------------------------\n","cyan"))
-			for bogey in bogeys:
-				print(colored("Target Type:\t"+bogey.Type,bogey.Threat))
-				print(colored("Distance:\t"+str(round(bogey.Range,1))+" Miles",bogey.Threat))
-				print(colored("Bearing:\t"+str(round(bogey.Bearing,0)),bogey.Threat))
-				print(colored("Altitude:\tAngels "+str(round(bogey.Altitude/1000,1)),bogey.Threat))
-				print("\r")
-				print("Target Count:\t"+str(len(bogeys)))
+	def print_bogeydope(player_name, bogeys):
+		print(colored("---------------------------","cyan"))
+		print(colored("Bogey dope for "+player_name+".","cyan"))
+		print(colored("---------------------------\n","cyan"))
+		for bogey in bogeys:
+			print(colored("Target Type:\t"+bogey.Type,bogey.Threat))
+			print(colored("Distance:\t"+str(round(bogey.Range,1))+" Miles",bogey.Threat))
+			print(colored("Bearing:\t"+str(round(bogey.Bearing,0)),bogey.Threat))
+			print(colored("Altitude:\tAngels "+str(round(bogey.Altitude/1000,1)),bogey.Threat))
+			print("\r")
+			print("Target Count:\t"+str(len(bogeys)))
 while True:
 	os.system('cls' if os.name=='nt' else 'clear')
 	print("Welcome to the GAW GCI Tool.")
